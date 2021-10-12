@@ -1,0 +1,71 @@
+@font-face {
+  font-family: gill-sans;
+  src:
+    local(gill-sans),
+    url("./fonts/Gill Sans/Gill Sans.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+@font-face {
+  font-family: lato;
+  src:
+    local(lato),
+    url("./fonts/Lato/Lato-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+}
+
+:root {
+  --blue-dark-background: #35548b;
+  --blue-medium-background: #4369b2;
+  --blue-light-background: #5687e4;
+  --body-title-font-family: gill-sans;
+  --control-font-family: lato;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  background-color: var(--blue-light-background);
+  color: white;
+}
+
+#root {
+  max-width: 576px;
+  width: 100%;
+}
+
+.body-title-text {
+  font-family: var(--body-title-font-family);
+}
+
+.control-text {
+  font-family: var(--control-font-family);
+}
+
+.dark-bg {
+  background-color: var(--blue-dark-background);
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  padding: 0;
+  color: white;
+}
+
+.link-button:hover {
+  text-decoration: underline;
+  color: white;
+}
+
+.error-msg {
+  height: 85vh;
+}
