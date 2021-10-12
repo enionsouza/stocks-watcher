@@ -42,8 +42,32 @@ export const loadStocks = () => async (dispatch) => {
   dispatch({ type: LOAD, allStocks: stateData, filteredStocks: stateData });
 };
 
-export const filterStocks = (allStocks, query) => {
-  const reQuery = new RegExp(query, 'i');
-  const stateData = allStocks.filter((stock) => stock.symbol.match(reQuery));
+export const filterStocks = (allStocks, symbolNameQuery, exchangeQuery = 'ALL', typeQuery = 'ALL') => {
+  const re = new RegExp(symbolNameQuery, 'i');
+
+  const stateData = allStocks.filter((stock) => {
+    if (exchangeQuery === 'ALL' && typeQuery === 'ALL') {
+      return stock.symbol.match(re) || stock.name.match(re);
+    }
+    if (exchangeQuery !== 'ALL' && typeQuery === 'ALL') {
+      return (
+        (stock.exchangeShortName === exchangeQuery) && (
+          stock.symbol.match(re) || stock.name.match(re)
+        )
+      );
+    }
+    if (exchangeQuery === 'ALL' && typeQuery !== 'ALL') {
+      return (
+        (stock.type === typeQuery) && (
+          stock.symbol.match(re) || stock.name.match(re)
+        )
+      );
+    }
+    return (
+      (stock.type === typeQuery && stock.exchangeShortName === exchangeQuery) && (
+        stock.symbol.match(re) || stock.name.match(re)
+      )
+    );
+  });
   return { type: LOAD, allStocks, filteredStocks: stateData };
 };

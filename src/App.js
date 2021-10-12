@@ -16,10 +16,10 @@ function App() {
           <Route path="/details">
             <Details />
           </Route>
-          <Route path="*">
-            <NoMatch />
-          </Route>
         </Provider>
+        <Route path="*">
+          <NoMatch />
+        </Route>
       </Switch>
     </Router>
   );
