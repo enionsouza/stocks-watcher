@@ -37,12 +37,12 @@ const HeaderNav = ({ type, symbol }) => {
 
 HeaderNav.propTypes = {
   type: PropTypes.string.isRequired,
-  symbol: PropTypes.string.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  symbol: PropTypes.string,
 };
 
 HeaderNav.default = {
   type: 'home',
-  symbol: '',
 };
 
 export default HeaderNav;

@@ -1,9 +1,9 @@
 const ALL_STOCKS_URL = 'https://financialmodelingprep.com/api/v3/stock/list?apikey=2c2c5f599ad92c8476f16dc324040688';
 const TRADABLE_STOCKS_URL = 'https://financialmodelingprep.com/api/v3/available-traded/list?apikey=2c2c5f599ad92c8476f16dc324040688';
 
-// actions
+// actions and initial state
 const LOADING = 'stocks-watcher/Home/LOADING';
-const LOADED = 'stocks-watcher/Home/LOAD';
+const LOADED = 'stocks-watcher/Home/LOADED';
 const initialState = {
   allStocks: [],
   filteredStocks: [],
@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
         filteredStocks: action.filteredStocks,
         loaded: true,
       });
-    default: return state;
+    default: return { ...state };
   }
 };
 
