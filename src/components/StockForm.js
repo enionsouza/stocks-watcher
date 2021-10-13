@@ -26,17 +26,6 @@ const StockForm = ({ allStocks }) => {
         <option value="AMEX">New York Stock Exchange Arca</option>
         <option value="NASDAQ">Nasdaq Global Market</option>
         <option value="NYSE">New York Stock Exchange</option>
-        <option value="EURONEXT">EURONEXT</option>
-        <option value="TSX">TSX (Toronto)</option>
-        <option value="XETRA">XETRA (Germany)</option>
-        <option value="LSE">LSE (London)</option>
-        <option value="SIX">SIX (Zurich)</option>
-        <option value="JNB">JNB (Johannesburg)</option>
-        <option value="MCX">MCX (India)</option>
-        <option value="NSE">NSE (India)</option>
-        <option value="HKSE">HKSE (Hong Kong)</option>
-        <option value="OSE">OSE (Osaka)</option>
-        <option value="JPX">JPX (Tokio)</option>
       </Form.Select>
       <Form.Select value={typeSearch} onChange={(e) => setTypeSearch(e.target.value)}>
         <option value="ALL">All types</option>

@@ -46,7 +46,8 @@ export const loadStocks = () => async (dispatch) => {
       ...stock,
       tradable: false,
     });
-  });
+  })
+    .filter((stock) => ['AMEX', 'NASDAQ', 'NYSE'].includes(stock.exchangeShortName));
   dispatch({ type: LOADED, allStocks: stateData, filteredStocks: stateData });
 };
 
@@ -55,26 +56,26 @@ export const filterStocks = (allStocks, symbolNameQuery, exchangeQuery = 'ALL', 
 
   const stateData = allStocks.filter((stock) => {
     if (exchangeQuery === 'ALL' && typeQuery === 'ALL') {
-      return stock.symbol.match(re) || stock.name.match(re);
+      return (stock.symbol.match(re) || stock.name.match(re)) && stock.tradable;
     }
     if (exchangeQuery !== 'ALL' && typeQuery === 'ALL') {
       return (
         (stock.exchangeShortName === exchangeQuery) && (
           stock.symbol.match(re) || stock.name.match(re)
-        )
+        ) && stock.tradable
       );
     }
     if (exchangeQuery === 'ALL' && typeQuery !== 'ALL') {
       return (
         (stock.type === typeQuery) && (
           stock.symbol.match(re) || stock.name.match(re)
-        )
+        ) && stock.tradable
       );
     }
     return (
       (stock.type === typeQuery && stock.exchangeShortName === exchangeQuery) && (
         stock.symbol.match(re) || stock.name.match(re)
-      )
+      ) && stock.tradable
     );
   });
   return { type: LOADED, allStocks, filteredStocks: stateData };
