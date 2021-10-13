@@ -44,7 +44,7 @@ const HeaderNav = ({ type, symbol }) => {
           <Modal.Title>Stocks Watcher</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          This a mobile web application was developed as my React capstone project.
+          This mobile web application was developed as my React capstone project.
           {' '}
           It checks a list of metrics (stock data) provided by an API chosen by the author.
           {' '}
