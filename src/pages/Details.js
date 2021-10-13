@@ -1,7 +1,15 @@
-// import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
+import HeaderNav from '../components/HeaderNav';
 
-const Details = () => (
-  <div />
-);
+const Details = () => {
+  const { slug } = useParams();
+  const details = 'details';
+
+  return (
+    <>
+      <HeaderNav type={`${details}`} symbol={slug} />
+    </>
+  );
+};
 
 export default Details;

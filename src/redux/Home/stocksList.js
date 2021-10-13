@@ -2,7 +2,8 @@ const ALL_STOCKS_URL = 'https://financialmodelingprep.com/api/v3/stock/list?apik
 const TRADABLE_STOCKS_URL = 'https://financialmodelingprep.com/api/v3/available-traded/list?apikey=2c2c5f599ad92c8476f16dc324040688';
 
 // actions
-const LOAD = 'stocks-watcher/Home/LOAD';
+const LOADING = 'stocks-watcher/Home/LOADING';
+const LOADED = 'stocks-watcher/Home/LOAD';
 const initialState = {
   allStocks: [],
   filteredStocks: [],
@@ -11,10 +12,16 @@ const initialState = {
 // reducer
 export default (state = initialState, action) => {
   switch (action.type) {
-    case (LOAD):
+    case (LOADING):
+      return ({
+        ...state,
+        loaded: false,
+      });
+    case (LOADED):
       return ({
         allStocks: action.allStocks,
         filteredStocks: action.filteredStocks,
+        loaded: true,
       });
     default: return state;
   }
@@ -22,6 +29,7 @@ export default (state = initialState, action) => {
 
 // action creators
 export const loadStocks = () => async (dispatch) => {
+  dispatch({ type: LOADING });
   const allStocksRes = await fetch(ALL_STOCKS_URL);
   const allStocksData = await allStocksRes.json();
   const tradableStocksRes = await fetch(TRADABLE_STOCKS_URL);
@@ -39,7 +47,7 @@ export const loadStocks = () => async (dispatch) => {
       tradable: false,
     });
   });
-  dispatch({ type: LOAD, allStocks: stateData, filteredStocks: stateData });
+  dispatch({ type: LOADED, allStocks: stateData, filteredStocks: stateData });
 };
 
 export const filterStocks = (allStocks, symbolNameQuery, exchangeQuery = 'ALL', typeQuery = 'ALL') => {
@@ -69,5 +77,5 @@ export const filterStocks = (allStocks, symbolNameQuery, exchangeQuery = 'ALL', 
       )
     );
   });
-  return { type: LOAD, allStocks, filteredStocks: stateData };
+  return { type: LOADED, allStocks, filteredStocks: stateData };
 };

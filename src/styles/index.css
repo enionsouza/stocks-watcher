@@ -52,6 +52,10 @@ body {
   background-color: var(--blue-dark-background);
 }
 
+.medium-bg {
+  background-color: var(--blue-medium-background);
+}
+
 .link-button {
   background-color: transparent;
   border: none;
