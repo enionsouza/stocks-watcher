@@ -5,6 +5,7 @@ import { loadStocks } from '../redux/Home/stocksList';
 import HeaderNav from '../components/HeaderNav';
 import StockForm from '../components/StockForm';
 import StocksTable from '../components/StocksTable';
+import StocksTablePlaceholder from '../components/StocksTablePlaceholder';
 
 const Home = () => {
   const { loaded, allStocks, filteredStocks } = useSelector((state) => state.stocksList);
@@ -20,6 +21,7 @@ const Home = () => {
     <>
       <HeaderNav type={`${home}`} />
       <StockForm allStocks={allStocks} />
+      {!loaded && <StocksTablePlaceholder />}
       {loaded && <StocksTable filteredStocks={filteredStocks} />}
     </>
   );
