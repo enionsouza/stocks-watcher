@@ -44,11 +44,15 @@ const HeaderNav = ({ type, symbol }) => {
           <Modal.Title>Stocks Watcher</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          This mobile web application was developed as my React capstone project.
+          This mobile web application was developed as a React Module Capstone Project for
+          {' '}
+          <a href="https://www.microverse.org/" target="_blank" rel="noreferrer">Microverse Online Bootcamp</a>
+          {' '}
+          .
           {' '}
           It checks a list of metrics (stock data) provided by an API chosen by the author.
           {' '}
-          This app was created with
+          This frontend app was created with
           {' '}
           <strong>ReactJs and Redux</strong>
           .
@@ -56,7 +60,7 @@ const HeaderNav = ({ type, symbol }) => {
         <Modal.Body>
           The API consumed in this project is the
           {' '}
-          <a href="https://financialmodelingprep.com/developer/docs/" target="_blank" rel="noreferrer">Financial modeling prep</a>
+          <a href="https://financialmodelingprep.com/developer/docs/" target="_blank" rel="noreferrer">Financial Modeling Prep API</a>
           {' '}
           and the original design idea was created by
           {' '}
@@ -64,7 +68,7 @@ const HeaderNav = ({ type, symbol }) => {
           .
         </Modal.Body>
         <Modal.Footer>
-          Built by
+          Built with &hearts; by
           {' '}
           <a href="https://www.linkedin.com/in/enio-neves-de-souza/" target="_blank" rel="noreferrer">Ênio Neves de Souza</a>
         </Modal.Footer>

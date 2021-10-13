@@ -15,13 +15,13 @@ const StocksTablePlaceholder = () => {
         <div className="d-flex" key={`placeholder-${i}`}>
           <Card className={`${i % 4 === 0 ? 'medium-bg' : 'dark-bg'} rounded-0`} style={{ width: '50%' }}>
             <Card.Body>
-              <Placeholder as={Card.Title} animation="wave">
+              <Placeholder as={Card.Title} animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
-              <Placeholder as={Card.Subtitle} className="mb-2" animation="wave">
+              <Placeholder as={Card.Subtitle} className="mb-2" animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
-              <Placeholder as={Card.Text} animation="wave">
+              <Placeholder as={Card.Text} animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
               <Placeholder.Button variant="light" xs={6} className="link-button mx-3 fs-5" />
@@ -29,13 +29,13 @@ const StocksTablePlaceholder = () => {
           </Card>
           <Card className={`${i % 4 === 0 ? 'dark-bg' : 'medium-bg'} rounded-0`} style={{ width: '50%' }}>
             <Card.Body>
-              <Placeholder as={Card.Title} animation="wave">
+              <Placeholder as={Card.Title} animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
-              <Placeholder as={Card.Subtitle} className="mb-2" animation="wave">
+              <Placeholder as={Card.Subtitle} className="mb-2" animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
-              <Placeholder as={Card.Text} animation="wave">
+              <Placeholder as={Card.Text} animation="glow">
                 <Placeholder xs={6} />
               </Placeholder>
               <Placeholder.Button variant="light" xs={6} className="link-button mx-3 fs-5" />
@@ -50,15 +50,13 @@ const StocksTablePlaceholder = () => {
   const paginationPlaceholder = () => {
     const items = [];
     const item = (i) => (
-      <Placeholder key={`pagination-placeholder-${i}`} xs={1} />
+      <Placeholder key={`pagination-placeholder-${i}`} xs={1} as={Card.Title} />
     );
 
     items.push(item(1));
-    items.push(<Pagination.Ellipsis key="ellipsis-01" />);
     for (let i = 2; i <= 4; i += 1) {
       items.push(item(i));
     }
-    items.push(<Pagination.Ellipsis key="ellipsis-02" />);
     items.push(item(5));
 
     return items;
