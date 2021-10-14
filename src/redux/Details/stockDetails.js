@@ -1,14 +1,15 @@
+import APIKEY from '../../utils/APIKEY';
 import parseData from '../../utils/parseData';
 
-const historicalDataURL = (symbol) => `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=2c2c5f599ad92c8476f16dc324040688`;
-const ratingDataURL = (symbol) => `https://financialmodelingprep.com/api/v3/rating/${symbol}?apikey=2c2c5f599ad92c8476f16dc324040688`;
+const historicalDataURL = (symbol) => `https://financialmodelingprep.com/api/v3/historical-price-full/${symbol}?apikey=${APIKEY}`;
+const ratingDataURL = (symbol) => `https://financialmodelingprep.com/api/v3/rating/${symbol}?apikey=${APIKEY}`;
 
 // actions and initial state
 const LOADING = 'stocks-watcher/Details/LOADING';
 const LOADED = 'stocks-watcher/Details/LOADED';
 const initialState = {
   symbol: 'AAAA',
-  historicalData: '',
+  historicalData: [],
   ratingData: {},
 };
 
@@ -31,7 +32,7 @@ export default (state = initialState, action) => {
   }
 };
 
-// action creators
+// action creator
 export const loadDetails = (symbolQuery) => async (dispatch) => {
   dispatch({ type: LOADING });
   const historicalRes = await fetch(historicalDataURL(symbolQuery));
@@ -43,6 +44,6 @@ export const loadDetails = (symbolQuery) => async (dispatch) => {
     type: LOADED,
     symbol: historicalDataJSON.symbol,
     historicalData,
-    ratingData,
+    ratingData: ratingData[0],
   });
 };
