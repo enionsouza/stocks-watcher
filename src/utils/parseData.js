@@ -15,9 +15,9 @@ const parseForPlotting = (parse) => (d) => {
 
 const parseDate = timeParse('%Y-%m-%d');
 
-const parseData = (historicalData) => {
+const parseData = (historicalRawData) => {
   let TSVData = 'date\topen\thigh\tlow\tclose\tvolume\tsplit\tdividend\tabsoluteChange\tpercentChange\n';
-  historicalData.reverse().forEach((dayInfo) => {
+  historicalRawData.reverse().forEach((dayInfo) => {
     TSVData += `${dayInfo.date}\t${dayInfo.open}\t${dayInfo.high}\t${dayInfo.low}\t${dayInfo.close}\t${dayInfo.volume}\t\t\n`;
   });
   return tsvParse(TSVData, parseForPlotting(parseDate));
