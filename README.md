@@ -59,7 +59,7 @@ cd stocks-watcher
 yarn
 ```
 
-3. For the last step of the process, you just need to edit the file `APIKEY_TEMPLATE.js` in the folder `src/utils/`. Make sure to change the `APIKEY` variable to the one that you got previously from the API dashboard. Now, run:
+3. For the last step of the process, you just need to edit the file `APIKEY_TEMPLATE.js` in the folder `src/utils/`. Make sure to change the `APIKEY` variable to the one that you got previously from the API dashboard, and rename the file name to `APIKEY.js`. Now, on your terminal, run:
 ```sh
 yarn start
 ```
