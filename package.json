@@ -61,12 +61,15 @@
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
     "eslint-plugin-react-hooks": "4.x",
+    "jest-fetch-mock": "^3.0.3",
     "stylelint": "13.x",
     "stylelint-config-standard": "21.x",
     "stylelint-csstree-validator": "1.x",
     "stylelint-scss": "3.x"
   },
   "jest": {
-    "transformIgnorePatterns": ["/node_modules/(?!(d3-dsv|d3-format|d3-time-format|d3-time|d3-array|internmap)/)"]
+    "transformIgnorePatterns": [
+      "/node_modules/(?!(d3-dsv|d3-format|d3-time-format|d3-time|d3-array|internmap)/)"
+    ]
   }
 }

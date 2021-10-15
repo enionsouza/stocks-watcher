@@ -1,5 +1,8 @@
+import fetchMock from 'jest-fetch-mock';
 import detailsReducer, { loadDetails } from '../redux/Details/stockDetails';
 import historicalDataMock from './mockData/historicalDataMock';
+import historicalRawDataMock from './mockData/historicalRawDataMock';
+import APIKEY from '../utils/APIKEY';
 
 describe('Unit tests for redux/Home/stocksList', () => {
   jest.mock('../redux/Details/stockDetails');
@@ -10,6 +13,9 @@ describe('Unit tests for redux/Home/stocksList', () => {
 
   const LOADING = 'stocks-watcher/Details/LOADING';
   const LOADED = 'stocks-watcher/Details/LOADED';
+
+  const historicalDataURL = (symbol) => `/historical-price-full/${symbol}?apikey=${APIKEY}`;
+  const ratingDataURL = (symbol) => `/rating/${symbol}?apikey=${APIKEY}`;
 
   const actionLoadingStateMock = {
     symbol: 'AAAA',
@@ -60,7 +66,21 @@ describe('Unit tests for redux/Home/stocksList', () => {
   });
 
   describe('action creator', () => {
-    jest.setTimeout(300000);
+    beforeEach(() => {
+      fetchMock.mockIf(/^https?:\/\/financialmodelingprep.com\/api\/v3*$/, (req) => {
+        if (req.url.endsWith(historicalDataURL('AAPL'))) {
+          return historicalRawDataMock;
+        }
+        if (req.url.endsWith(ratingDataURL('AAPL'))) {
+          return ratingDataMock;
+        }
+        return {
+          status: 404,
+          body: 'Not Found',
+        };
+      });
+    });
+
     it('returns the correct action for \'loadDetails\' thunk', async () => {
       await loadDetails('AAPL')(dispatchMock);
       expect(expectedOutputAction.type).toEqual(LOADED);
