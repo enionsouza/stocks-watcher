@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable no-param-reassign */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'd3-format';
@@ -47,33 +45,44 @@ const CandleStickChart = (props) => {
   const gridHeight = height - margin.top - margin.bottom;
   const gridWidth = width - margin.left - margin.right;
 
-  const showGrid = true;
-  const yGrid = showGrid ? { innerTickSize: -1 * gridWidth, tickStrokeOpacity: 0.1 } : {};
-  const xGrid = showGrid ? { innerTickSize: -1 * gridHeight, tickStrokeOpacity: 0.1 } : {};
-
   const ema20 = ema()
     .id(0)
     .options({ windowSize: 20 })
-    .merge((d, c) => { d.ema20 = c; })
+    .merge((d, c) => {
+      const m = d;
+      m.ema20 = c;
+    })
     .accessor((d) => d.ema20);
 
   const ema50 = ema()
     .id(2)
     .options({ windowSize: 50 })
-    .merge((d, c) => { d.ema50 = c; })
+    .merge((d, c) => {
+      const m = d;
+      m.ema50 = c;
+    })
     .accessor((d) => d.ema50);
 
   const slowSTO = stochasticOscillator()
     .options({ windowSize: 14, kWindowSize: 3 })
-    .merge((d, c) => { d.slowSTO = c; })
+    .merge((d, c) => {
+      const m = d;
+      m.slowSTO = c;
+    })
     .accessor((d) => d.slowSTO);
   const fastSTO = stochasticOscillator()
     .options({ windowSize: 14, kWindowSize: 1 })
-    .merge((d, c) => { d.fastSTO = c; })
+    .merge((d, c) => {
+      const m = d;
+      m.fastSTO = c;
+    })
     .accessor((d) => d.fastSTO);
   const fullSTO = stochasticOscillator()
     .options({ windowSize: 14, kWindowSize: 3, dWindowSize: 4 })
-    .merge((d, c) => { d.fullSTO = c; })
+    .merge((d, c) => {
+      const m = d;
+      m.fullSTO = c;
+    })
     .accessor((d) => d.fullSTO);
 
   const calculatedData = ema20(ema50(slowSTO(fastSTO(fullSTO(initialData)))));
@@ -109,7 +118,7 @@ const CandleStickChart = (props) => {
         yExtents={(d) => [d.high, d.low]}
         padding={{ top: 10, bottom: 20 }}
       >
-        <YAxis axisAt="right" orient="right" ticks={5} {...yGrid} />
+        <YAxis axisAt="right" orient="right" ticks={5} innerTickSize={-1 * gridWidth} tickStrokeOpacity={0.1} />
         <XAxis axisAt="bottom" orient="bottom" showTicks={false} outerTickSize={0} />
 
         <MouseCoordinateY
@@ -197,7 +206,7 @@ const CandleStickChart = (props) => {
 
         <StochasticSeries
           yAccessor={(d) => d.fastSTO}
-          {...stoAppearance}
+          stroke={{ ...StochasticSeries.defaultProps.stroke }}
         />
         <StochasticTooltip
           origin={[-38, 15]}
@@ -230,7 +239,7 @@ const CandleStickChart = (props) => {
 
         <StochasticSeries
           yAccessor={(d) => d.slowSTO}
-          {...stoAppearance}
+          stroke={{ ...StochasticSeries.defaultProps.stroke }}
         />
 
         <StochasticTooltip
@@ -248,7 +257,7 @@ const CandleStickChart = (props) => {
         origin={(w, h) => [0, h - 125]}
         padding={{ top: 10, bottom: 10 }}
       >
-        <XAxis axisAt="bottom" orient="bottom" {...xGrid} />
+        <XAxis axisAt="bottom" orient="bottom" innerTickSize={-1 * gridHeight} tickStrokeOpacity={0.1} />
         <YAxis
           axisAt="right"
           orient="right"
@@ -267,7 +276,7 @@ const CandleStickChart = (props) => {
         />
         <StochasticSeries
           yAccessor={(d) => d.fullSTO}
-          {...stoAppearance}
+          stroke={{ ...StochasticSeries.defaultProps.stroke }}
         />
 
         <StochasticTooltip
@@ -284,8 +293,30 @@ const CandleStickChart = (props) => {
 };
 
 CandleStickChart.propTypes = {
-  // eslint-disable-next-line react/forbid-prop-types
-  data: PropTypes.array.isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    date: PropTypes.date,
+    open: PropTypes.number,
+    high: PropTypes.number,
+    low: PropTypes.number,
+    close: PropTypes.number,
+    volume: PropTypes.number,
+    split: PropTypes.string,
+    dividend: PropTypes.string,
+    absoluteChange: PropTypes.string,
+    percentChange: PropTypes.string,
+    fullSTO: PropTypes.shape({
+      K: PropTypes.number,
+      D: PropTypes.number,
+    }),
+    fastSTO: PropTypes.shape({
+      K: PropTypes.number,
+      D: PropTypes.number,
+    }),
+    slowSTO: PropTypes.shape({
+      K: PropTypes.number,
+      D: PropTypes.number,
+    }),
+  })).isRequired,
   width: PropTypes.number.isRequired,
   ratio: PropTypes.number.isRequired,
   type: PropTypes.oneOf(['svg', 'hybrid']).isRequired,
