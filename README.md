@@ -1,70 +1,97 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="https://www.microverse.org/">
+    <img alt="Microverse" src="https://img.shields.io/badge/-Microverse-blueviolet?style=flat-square">
+  </a>
+  <a href="https://github.com/enionsouza/stocks-watcher">
+    <img alt="GitHub last commit (branch)" src="https://img.shields.io/github/last-commit/enionsouza/stocks-watcher/develop?color=blue&style=flat-square">
+  </a>
+  <a href="https://github.com/enionsouza/stocks-watcher">
+    <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/enionsouza/stocks-watcher?color=cyan&label=%E2%98%85%20stars%20&style=flat-square">
+  </a>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+# Stocks Watcher
 
-In the project directory, you can run:
+## About
 
-### `yarn start`
+This mobile web application was developed as the Capstone Project for Microverse React-Redux Curriculum Module. It was built upon [Financial Modeling Prep API](https://financialmodelingprep.com/developer/docs/) and the original design idea was created by [Nelson Sakwa on Behance](https://www.behance.net/sakwadesignstudio). My task was to check a list of metrics (data stock, in my case) making use of React and Redux. The application allows users to list the Stocks, ETFs, and Funds traded in AMEX, NYSE, and Nasdaq Stock Exchanges and filter their search.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Below, I present some screenshots of the app.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<p align="center">
+<img style="border: 1px solid black;" src="./docs/Screenshot1.png" width="700" alt="Home page">
+<img style="border: 1px solid black;" src="./docs/Screenshot2.png" width="700" alt="Details page">
+<img style="border: 1px solid black;" src="./docs/Screenshot3.png" width="700" alt="About modal">
+</p>
 
-### `yarn test`
+## Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- HTML, CSS, JavaScript;
+- ReactJS, Redux;
+- Bootstrap, React Stockcharts;
+- VisualStudio Code, Git, & GitHub;
 
-### `yarn build`
+## Pre-requisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- NodeJs (v. 14.17)
+- YarnJs (v. 1.22.10)
+- Git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Live Demo
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Live demo for this project can be found in this [link](https://stocks-watcher-enionsouza.netlify.app).
 
-### `yarn eject`
+## Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To run this app running locally,you'll need an API key that you can easily obtain by registering at [https://financialmodelingprep.com/register](https://financialmodelingprep.com/register). You only need a valid email account to register freely. Now, go to the API dashboard and get your newly created API key! Store this token with you, because you'll need it for the next steps:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. In your terminal, in the folder of your preference, type the following bash command to clone this repository:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```sh
+git clone git@github.com:enionsouza/stocks-watcher.git
+```
 
-## Learn More
+2. Now that you have already cloned the repo run the following commands to get the project up and running:
+```sh
+cd stocks-watcher
+yarn
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+3. For the last step of the process, you just need to edit the file `APIKEY.js` in the folder `src/utils/`. Make sure to change the `APIKEY` variable to the one that you got previously from the API dashboard. Now, on your terminal, run:
+```sh
+yarn start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+This should start your local server in [http://localhost:3000/](http://localhost:3000/). To stop it, hit `<CTRL> + C` on your keyboard.
+## Run tests
 
-### Code Splitting
+To test the App's components and logic, please, run the following command:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```sh
+yarn test --watchAll
+```
+Make sure you have properly provided an API key, as explained in the steps above. When the tests are finished, just hit `q` key to leave the watch mode for the tests.
 
-### Analyzing the Bundle Size
+## Author
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+👤 **Ênio Neves de Souza**
 
-### Making a Progressive Web App
+- GitHub: [@enionsouza](https://github.com/enionsouza)
+- Twitter: [@enionsouza](https://twitter.com/enionsouza)
+- LinkedIn: [Enio Neves de Souza](https://www.linkedin.com/in/enio-neves-de-souza/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 🤝 Contributing
 
-### Advanced Configuration
+Contributions, issues, and feature requests are welcome!
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Feel free to check the [issues page](https://github.com/enionsouza/stocks-watcher/issues).
 
-### Deployment
+## Show your support
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Give a ⭐️ if you like this project!
 
-### `yarn build` fails to minify
+## 📝 License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is [MIT](./LICENSE) licensed.
