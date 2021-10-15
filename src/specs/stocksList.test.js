@@ -42,6 +42,8 @@ describe('Unit tests for redux/Home/stocksList', () => {
   });
 
   describe('action creators', () => {
+    jest.setTimeout(20000);
+
     beforeEach(() => {
       fetchMock.mockIf(/^https?:\/\/financialmodelingprep.com\/api\/v3*$/, (req) => {
         if (req.url.endsWith(ALL_STOCKS_URL)) {
